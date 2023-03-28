@@ -1,0 +1,66 @@
+<div class="flex align-center product-details-container">
+  <nz-spin *ngIf="loading" nzSimple nzSize="large"></nz-spin>
+</div>
+
+<div *ngIf="product">
+  <div class="product-details-container">
+    <div class="product-desc-container">
+      <div class="product-photo-container">
+        <div
+          class="product-photo"
+          [ngStyle]="{ 'background-image': 'url(' + product.photo + ')' }"
+        ></div>
+      </div>
+      <div class="product-description">
+        <h2>
+          <editable-field
+            [field]="product.name"
+            (fieldChange)="onProductChange()"
+          ></editable-field>
+        </h2>
+        <h3 class="product-price">
+          Price:
+          <editable-field
+            [field]="product.price"
+            (fieldChange)="onProductChange()"
+            symbol="$"
+          ></editable-field>
+        </h3>
+        <div class="product-description-text">
+          <editable-field
+            [field]="product.description"
+            (fieldChange)="onProductChange()"
+            [multiline]="true"
+          ></editable-field>
+        </div>
+      </div>
+    </div>
+    <div class="product-footer">
+      <button [routerLink]="['/admin/products']" nz-button nzType="default">
+        Back
+      </button>
+      <button
+        (click)="saveProduct()"
+        nz-button
+        nzType="primary"
+        [disabled]="!changed"
+        [nzLoading]="saveLoading"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+
+<nz-result
+  *ngIf="!product && error"
+  nzStatus="404"
+  nzTitle="404"
+  nzSubTitle="There is no such product"
+>
+  <div nz-result-extra>
+    <button [routerLink]="['/admin/products']" nz-button nzType="primary">
+      Back
+    </button>
+  </div>
+</nz-result>

@@ -1,0 +1,58 @@
+.store-main {
+  display: block;
+  padding: 30px 50px;
+}
+.products-row {
+  margin-bottom: 40px;
+}
+
+.product-photo {
+  min-height: 325px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.add-to-cart {
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+.add-to-cart:hover {
+  cursor: pointer;
+  background-color: rgb(234, 234, 234);
+}
+
+.product-description {
+  text-overflow: ellipsis;
+  height: 25px;
+  display: block;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.main-carousel {
+  height: 450px;
+  margin-bottom: 40px;
+}
+
+.store-intro {
+  height: 450px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(3px);
+}
+
+.store-intro-intro {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 100px;
+  font-size: 100px;
+  font-weight: 500;
+  color: black;
+  text-shadow: 1px white;
+  z-index: 2;
+}

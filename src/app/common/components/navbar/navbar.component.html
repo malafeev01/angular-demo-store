@@ -1,0 +1,38 @@
+<div class="navbar">
+  <div class="navbar-left-menu">
+    <div routerLink="/" class="navbar-brand navbar-item">
+      Angular Demo Store
+    </div>
+  </div>
+  <div class="navbar-right-menu">
+    <div class="navbar-item" *ngIf="isCartShown()" (click)="toggleCart()">
+      <nz-badge
+        class="navbar-item"
+        [nzCount]="getCartLength()"
+        [nzOffset]="[15, 0]"
+      >
+        <span nz-icon nzType="shopping-cart" nzTheme="outline"></span>
+        Cart
+      </nz-badge>
+    </div>
+
+    <div routerLink="login" class="navbar-item" *ngIf="isLoginShown()">
+      Login
+    </div>
+
+    <div class="navbar-item" *ngIf="!isLoginShown()">
+      <span nz-dropdown [nzDropdownMenu]="menu">
+        {{ getUsername() }}
+        <span nz-icon nzType="down"></span>
+      </span>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          <li *ngIf="isAdmin()" (click)="goToAdmin()" nz-menu-item>
+            Admin Panel
+          </li>
+          <li (click)="logout()" nz-menu-item>Logout</li>
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</div>

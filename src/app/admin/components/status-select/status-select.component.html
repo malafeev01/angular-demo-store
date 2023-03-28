@@ -1,0 +1,25 @@
+<nz-select
+  class="order-status-select"
+  [nzBorderless]="true"
+  [(ngModel)]="order.status"
+  [nzCustomTemplate]="statusTemplate"
+  (click)="$event.stopPropagation()"
+  (ngModelChange)="setOrderStatus()"
+>
+  <nz-option nzValue="new" nzLabel="New"></nz-option>
+  <nz-option nzValue="in-progress" nzLabel="In Progress"></nz-option>
+  <nz-option nzValue="done" nzLabel="Done"></nz-option>
+</nz-select>
+
+<ng-template #statusTemplate let-selected>
+  <div
+    class="status-item"
+    [ngClass]="{
+      'status-item-new': selected.nzValue === 'new',
+      'status-item-in-progress': selected.nzValue === 'in-progress',
+      'status-item-done': selected.nzValue === 'done'
+    }"
+  >
+    {{ selected.nzLabel }}
+  </div>
+</ng-template>

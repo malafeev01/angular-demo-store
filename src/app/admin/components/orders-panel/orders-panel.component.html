@@ -1,0 +1,46 @@
+<h1>Orders</h1>
+
+<div class="flex align-center">
+  <nz-spin *ngIf="loading" nzSimple nzSize="large"></nz-spin>
+</div>
+
+<nz-table
+  #basicTable
+  [nzData]="orders"
+  [nzBordered]="true"
+  *ngIf="orders.length"
+>
+  <thead>
+    <tr>
+      <th [nzWidth]="'7%'">Order ID</th>
+      <th>Products</th>
+      <th [nzWidth]="'30%'">Customer</th>
+      <th [nzWidth]="'10%'">Total</th>
+      <th [nzWidth]="'10%'" nzAlign="center">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of basicTable.data" [routerLink]="[order.id]">
+      <td>{{ order.id }}</td>
+      <td>
+        <div *ngFor="let cartItem of order.cart">
+          {{ cartItem.product.name }} x {{ cartItem.count }}
+        </div>
+      </td>
+      <td>
+        <nz-descriptions nzLayout="horizontal" nzSize="small" [nzColumn]="1">
+          <nz-descriptions-item nzTitle="Name">{{
+            order.customer.username
+          }}</nz-descriptions-item>
+          <nz-descriptions-item nzTitle="Email">{{
+            order.customer.email
+          }}</nz-descriptions-item>
+        </nz-descriptions>
+      </td>
+      <td>{{ getTotal(order) }} $</td>
+      <td>
+        <order-status-select [order]="order"></order-status-select>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

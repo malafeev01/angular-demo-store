@@ -1,0 +1,48 @@
+<h1>Products</h1>
+
+<div class="flex align-center">
+  <nz-spin *ngIf="loading" nzSimple nzSize="large"></nz-spin>
+</div>
+
+<nz-table
+  *ngIf="products.length"
+  #basicTable
+  [nzData]="products"
+  [nzBordered]="true"
+>
+  <thead>
+    <tr>
+      <th [nzWidth]="'5%'">ID</th>
+      <th [nzWidth]="'20%'">Name</th>
+      <th>Description</th>
+      <th [nzWidth]="'10%'">Price</th>
+      <th [nzWidth]="'10%'" nzAlign="center">Photo</th>
+      <th [nzWidth]="'10%'" nzAlign="center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of basicTable.data" [routerLink]="[product.id]">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }} $</td>
+      <td>
+        <div
+          class="product-photo"
+          [ngStyle]="{ 'background-image': 'url(' + product.photo + ')' }"
+        ></div>
+      </td>
+      <td>
+        <div class="product-action">
+          <span
+            class="product-action-item"
+            nz-icon
+            nzType="delete"
+            nzTheme="outline"
+            (click)="deleteProduct(product); $event.stopPropagation()"
+          ></span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

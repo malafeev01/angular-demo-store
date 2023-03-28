@@ -1,0 +1,56 @@
+<div *ngIf="show" class="cart-panel">
+  <div *ngIf="this.cart.length">
+    <h1>Cart</h1>
+    <nz-table
+      #basicTable
+      [nzData]="cart"
+      [nzBordered]="true"
+      [nzShowPagination]="false"
+    >
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th [nzWidth]="'10%'">Count</th>
+          <th [nzWidth]="'10%'">Price</th>
+          <th [nzWidth]="'10%'">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.product.name }}</td>
+          <td>{{ data.count }}</td>
+          <td>{{ getPrice(data) }} $</td>
+          <td>
+            <span
+              class="remove-from-cart"
+              (click)="removeFromCart(data.product)"
+              nz-icon
+              nzType="delete"
+              nzTheme="outline"
+            ></span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <div class="total-row">
+      <h3>Total {{ getTotal() }} $</h3>
+    </div>
+  </div>
+  <div *ngIf="!this.cart.length">
+    <nz-empty
+      nzNotFoundImage="simple"
+      nzNotFoundContent="The cart is empty"
+    ></nz-empty>
+  </div>
+  <div class="cart-panel-footer">
+    <button (click)="closeCart()" nz-button nzType="default">Close</button>
+    <button
+      (click)="confirmOrder()"
+      nz-button
+      nzType="primary"
+      [disabled]="!this.cart.length"
+    >
+      Order
+    </button>
+  </div>
+</div>

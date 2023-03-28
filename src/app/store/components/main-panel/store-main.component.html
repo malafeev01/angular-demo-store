@@ -1,0 +1,70 @@
+<cart-panel [show]="showCartPanel()"></cart-panel>
+
+<nz-carousel class="main-carousel" nzEffect="scrollx" [nzAutoPlay]="true">
+  <div
+    nz-carousel-content
+    *ngFor="
+      let index of [
+        'https://www.apple.com/v/iphone/buy/h/images/meta/og__c6pnqxxo9e6a.jpg',
+        'https://www.apple.com/ru/iphone/home/images/meta/iphone__btp62hy2cbea_og.png',
+        'https://www.apple.com/v/iphone-13/d/images/meta/iphone-13_overview__fpjuzw2ncqmy_og.png'
+      ]
+    "
+  >
+    <div class="store-intro-intro">Apple Demo Store</div>
+    <div
+      class="store-intro"
+      [ngStyle]="{ 'background-image': 'url(' + index + ')' }"
+    ></div>
+  </div>
+</nz-carousel>
+
+<div class="store-main">
+  <div class="flex align-center">
+    <nz-spin *ngIf="loading" nzSimple nzSize="large"></nz-spin>
+  </div>
+  <div
+    nz-row
+    [nzGutter]="32"
+    class="products-row"
+    *ngFor="let row of products | chunks : 4"
+  >
+    <div nz-col nzSpan="6" *ngFor="let product of row">
+      <nz-card
+        nzHoverable
+        [nzCover]="coverTemplate"
+        [nzExtra]="canAddToCart() ? extraTemplate : ''"
+        (click)="openProductDetails(product)"
+      >
+        <nz-card-meta
+          [nzTitle]="product.name"
+          [nzDescription]="descriptionTemplate"
+        >
+        </nz-card-meta>
+      </nz-card>
+
+      <ng-template #descriptionTemplate>
+        <div class="product-description">{{ product.description }}</div>
+        <div class="product-description">
+          <h3>{{ product.price }} $</h3>
+        </div>
+      </ng-template>
+
+      <ng-template #extraTemplate>
+        <div
+          (click)="addToCart(product); $event.stopPropagation()"
+          class="add-to-cart"
+        >
+          Add to cart <span nz-icon nzType="plus" nzTheme="outline"></span>
+        </div>
+      </ng-template>
+
+      <ng-template #coverTemplate>
+        <div
+          class="product-photo"
+          [ngStyle]="{ 'background-image': 'url(' + product.photo + ')' }"
+        ></div>
+      </ng-template>
+    </div>
+  </div>
+</div>

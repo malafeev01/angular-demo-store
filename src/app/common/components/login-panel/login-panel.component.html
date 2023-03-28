@@ -1,0 +1,45 @@
+<div class="page flex align-center">
+  <div class="flex layout-column align-center">
+    <div>
+      <h1>Hi there, please login to get full access to the store</h1>
+    </div>
+    <div class="login-block">
+      <form nz-form [formGroup]="loginForm" (ngSubmit)="login()">
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please enter username">
+            <nz-input-group nzPrefixIcon="user">
+              <input
+                type="text"
+                nz-input
+                formControlName="username"
+                placeholder="Username"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Please enter password">
+            <nz-input-group nzPrefixIcon="lock">
+              <input
+                type="password"
+                nz-input
+                formControlName="password"
+                placeholder="Password"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <div>
+          <button nz-button nzType="primary" [nzLoading]="loading">
+            Log in
+          </button>
+        </div>
+      </form>
+    </div>
+    <nz-alert
+      *ngIf="errorMessage"
+      nzType="error"
+      [nzMessage]="errorMessage"
+    ></nz-alert>
+  </div>
+</div>

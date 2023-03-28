@@ -1,0 +1,21 @@
+<div class="admin-sidebar">
+  <div class="admin-sidebar-items">
+    <nz-badge [nzCount]="newOrders">
+      <div
+        routerLink="orders"
+        routerLinkActive="admin-sidebar-item-selected"
+        class="admin-sidebar-item"
+      >
+        <span nz-icon nzType="shopping" nzTheme="outline"></span>
+      </div>
+    </nz-badge>
+
+    <div
+      routerLink="products"
+      routerLinkActive="admin-sidebar-item-selected"
+      class="admin-sidebar-item"
+    >
+      <span nz-icon nzType="appstore" nzTheme="outline"></span>
+    </div>
+  </div>
+</div>

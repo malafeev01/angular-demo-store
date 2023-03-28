@@ -1,0 +1,68 @@
+<div class="confirm-order-panel">
+  <div *ngIf="!createdOrder">
+    <h1>Order</h1>
+    <div class="products-info-row">Products</div>
+    <nz-table
+      #basicTable
+      [nzData]="cart"
+      [nzShowPagination]="false"
+      nzSize="small"
+    >
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th [nzWidth]="'10%'">Count</th>
+          <th [nzWidth]="'10%'">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.product.name }}</td>
+          <td>{{ data.count }}</td>
+          <td>{{ getPrice(data) }} $</td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <div class="total-row">
+      <h3>Total {{ getTotal() }} $</h3>
+    </div>
+
+    <nz-descriptions nzTitle="Customer's info">
+      <nz-descriptions-item nzTitle="Username"
+        >{{ user?.username }}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Email"
+        >{{ user?.email }}
+      </nz-descriptions-item>
+    </nz-descriptions>
+
+    <div class="order-panel-footer">
+      <button [routerLink]="['']" nz-button nzType="default">
+        Continue shopping
+      </button>
+      <button (click)="cancelOrder()" nz-button nzType="default" nzDanger>
+        Cancel order
+      </button>
+      <button
+        (click)="createOrder()"
+        nz-button
+        nzType="primary"
+        [nzLoading]="loading"
+      >
+        Create order
+      </button>
+    </div>
+  </div>
+  <nz-result
+    *ngIf="createdOrder"
+    nzStatus="success"
+    nzTitle="Order successfully created!"
+    [nzSubTitle]="
+      'You\'ve successfully created an order with id: ' + createdOrder.id
+    "
+  >
+    <div nz-result-extra>
+      <button [routerLink]="['']" nz-button nzType="primary">Go to home</button>
+    </div>
+  </nz-result>
+</div>

@@ -1,0 +1,20 @@
+.products-info-row {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5715;
+  margin-bottom: 20px;
+}
+
+.total-row {
+  justify-content: flex-end;
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.order-panel-footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}

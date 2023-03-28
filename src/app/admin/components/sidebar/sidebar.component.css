@@ -1,0 +1,32 @@
+.admin-sidebar {
+  width: 60px;
+  height: 100vh;
+  background-color: rgb(246 246 246);
+  padding-top: 40px;
+}
+
+.admin-sidebar-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sidebar-item {
+  width: 60px;
+  height: 60px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #888888;
+}
+
+.admin-sidebar-item:hover {
+  cursor: pointer;
+  background-color: rgb(227, 227, 227);
+  color: black;
+}
+
+.admin-sidebar-item-selected {
+  background-color: rgb(227, 227, 227);
+  color: black;
+}

@@ -1,0 +1,27 @@
+.product-action {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  font-size: 22px;
+  justify-content: center;
+}
+
+.product-action-item {
+  color: gray;
+}
+
+.product-action-item:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.product-photo {
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+tr:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,33 @@
+.cart-panel {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 2;
+  padding: 50px;
+  box-shadow: 0px 2px 3px 0px #e2e2e2;
+}
+
+.cart-panel nz-table {
+  margin-bottom: 10px;
+}
+
+.cart-panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.remove-from-cart {
+  color: gray;
+}
+
+.remove-from-cart:hover {
+  cursor: pointer;
+  color: black;
+}
+.total-row {
+  justify-content: flex-end;
+  display: flex;
+
+  margin-bottom: 30px;
+}

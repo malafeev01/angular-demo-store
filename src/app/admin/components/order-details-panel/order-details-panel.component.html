@@ -1,0 +1,61 @@
+<div class="confirm-order-panel">
+  <div class="flex align-center">
+    <nz-spin *ngIf="loading" nzSimple nzSize="large"></nz-spin>
+  </div>
+
+  <div *ngIf="order">
+    <h1>Order #{{ order.id }}</h1>
+    <div class="products-info-row">Products</div>
+    <nz-table
+      #basicTable
+      [nzData]="order.cart"
+      [nzShowPagination]="false"
+      nzSize="small"
+    >
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th [nzWidth]="'10%'">Count</th>
+          <th [nzWidth]="'10%'">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data.product.name }}</td>
+          <td>{{ data.count }}</td>
+          <td>{{ getPrice(data) }} $</td>
+        </tr>
+      </tbody>
+    </nz-table>
+    <div class="total-row">
+      <h3>Total {{ getTotal() }}</h3>
+    </div>
+
+    <nz-descriptions nzTitle="Customer's info">
+      <nz-descriptions-item nzTitle="Username"
+        >{{ order && order.customer && order.customer.username }}
+      </nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Email"
+        >{{ order && order.customer && order.customer.email }}
+      </nz-descriptions-item>
+    </nz-descriptions>
+
+    <div class="order-panel-footer">
+      <button [routerLink]="['/admin/orders']" nz-button nzType="default">
+        Back
+      </button>
+      <order-status-select [order]="order"></order-status-select>
+    </div>
+  </div>
+
+  <nz-result
+    *ngIf="!order && error"
+    nzStatus="404"
+    nzTitle="404"
+    nzSubTitle="There is no such order"
+  >
+    <div nz-result-extra>
+      <button [routerLink]="['/admin']" nz-button nzType="primary">Back</button>
+    </div>
+  </nz-result>
+</div>

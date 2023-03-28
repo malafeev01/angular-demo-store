@@ -1,0 +1,49 @@
+<div class="flex align-center product-details-container">
+  <nz-spin *ngIf="loading" nzSimple nzSize="large"></nz-spin>
+</div>
+
+<div *ngIf="product">
+  <div class="product-details-container">
+    <div class="product-desc-container">
+      <div class="product-photo-container">
+        <div
+          class="product-photo"
+          [ngStyle]="{ 'background-image': 'url(' + product.photo + ')' }"
+        ></div>
+      </div>
+      <div class="product-description">
+        <h2>{{ product.name }}</h2>
+        <h3>Price: {{ product.price }} $</h3>
+        <div class="product-description-text">{{ product.description }}</div>
+      </div>
+    </div>
+    <div class="product-footer">
+      <button [routerLink]="['']" nz-button nzType="default">Back</button>
+      <button
+        *ngIf="canAddToCart()"
+        (click)="addToCart()"
+        nz-button
+        nzType="primary"
+      >
+        Add to cart
+      </button>
+    </div>
+  </div>
+  <div class="alert-container" *ngIf="!canAddToCart()">
+    <nz-alert
+      nzType="warning"
+      nzMessage="If you want to buy this product, please log in."
+    ></nz-alert>
+  </div>
+</div>
+
+<nz-result
+  *ngIf="!product && error"
+  nzStatus="404"
+  nzTitle="404"
+  nzSubTitle="There is no such product"
+>
+  <div nz-result-extra>
+    <button [routerLink]="['']" nz-button nzType="primary">Back Home</button>
+  </div>
+</nz-result>

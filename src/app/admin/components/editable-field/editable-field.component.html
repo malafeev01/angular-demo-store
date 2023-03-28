@@ -1,0 +1,30 @@
+<span *ngIf="!editMode" class="editable-field-input">
+  <span>{{ field }}{{ symbol }}</span>
+  <span
+    class="action-icon"
+    nz-icon
+    nzType="edit"
+    nzTheme="outline"
+    (click)="editMode = true"
+  ></span>
+</span>
+
+<span *ngIf="editMode" class="editable-field-input">
+  <input *ngIf="!multiline" nz-input [(ngModel)]="field" />
+  <textarea *ngIf="multiline" nz-input [(ngModel)]="field" rows="10">
+  </textarea>
+  <span
+    class="action-icon"
+    nz-icon
+    nzType="check"
+    nzTheme="outline"
+    (click)="saveChanges()"
+  ></span>
+  <span
+    class="action-icon"
+    nz-icon
+    nzType="close"
+    nzTheme="outline"
+    (click)="editMode = false"
+  ></span>
+</span>
