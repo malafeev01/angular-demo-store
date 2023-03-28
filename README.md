@@ -11,9 +11,13 @@ This is a demo project of online store built using the next stack:
 
 This is only a web ui part, all the requests will be simulated with 1 sec delay.
 
-## Development server
+## How to install
+First of all clone this repository to some local directory and go to this folder.
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `npm install` to install dependencies.
+
+Then run `npm start` to start a dev server. Navigate to `http://localhost:4200/`. 
+The application will automatically reload if you change any of the source files.
 
 
 ## Running unit tests
